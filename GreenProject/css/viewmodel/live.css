@@ -1,0 +1,298 @@
+/**
+ *左侧菜单栏 
+ **/
+
+.mainMenu_div {
+	height: 100%;
+	width: 250px;
+	background-color: white;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	font-size: 13px !important;
+	border-right: 1px solid #C1C1C1;
+}
+.cbReg_label,.cbAuto_label{margin-left: 20px;margin-top: 3px;}
+.cbstationname_label,.cbstationnum_label{margin-bottom: 9px;margin-left: 20px;}
+.cbReg_label,.cbstationname_label{margin-left: 51px;}
+.temp_label,.relhum_label,.hour08_label,.hour20_label,.hour2008_label,.windv_label{margin-left: 20px;margin-top: 0px;}
+.rain_label{margin-left: 28px;}
+.visib_label,.relhum_label{margin-left: 16px;}
+.press_label{margin-left: 20px;margin-top: 0px;}
+.hour0820_label,.hour08_label{margin-left: 20px;margin-top: 0px;}
+.rain_48{margin-left: 13px;}
+.rain_09{margin-left: 21px;}
+.rain_12{margin-left: 20px;}
+.rain_06{margin-left: 29px;}
+.rain_03,.rain_24{margin-left: 20px;}
+.station-button{margin-top: 10px;}
+.dengxian{margin-top:4px;height: 30px; width: 80px;background-color: #45A1EB;color: white;}
+.dengmian{height: 30px; width: 80px;background-color: #45A1EB;color: white;}
+.btn{height: 30px; width: 80px;background-color: #7CC900;color: white;border: 1px solid;}
+.forward{height: 30px; width: 80px;background-color: #45A1EB;color: white;}
+.after{height: 30px; width: 80px;background-color: #45A1EB;color: white;}
+.current{height: 30px; width: 80px;background-color: #45A1EB;color: white;}
+.split_line{height:1px;width:240px;background:#00CCFF;overflow:hidden;margin-left: 5px;}
+.mar_line{margin-top: 5px;}
+#sum_div{margin-top: 10px;}
+.space_div{height: 2px;}
+#monitoring_div span{margin-left: 17px;font-size: 15px;font-weight: 800;}
+/**
+ * 右侧table
+ * **/
+
+/*.divwarm {
+	position: absolute;
+	bottom: 6%;
+	height: 462px;
+	width: 300px;
+	text-align: center;
+	background-color: white;
+	float: left;
+	top: 10%;
+	right: 0px;
+	border-bottom: 1px solid #3699E8;
+	;
+	border-left: 1px solid #3699E8;
+	;
+	border-top: 1px solid #3699E8;
+	;
+	border-radius: 5px;
+}
+
+#warmtable {
+	border-radius: 3px;
+	background-color: #3f9ee9;
+}
+
+#closebox {
+	height: 56px;
+	width: 25px;
+	right: 299px;
+	position: absolute;
+	background-color: #3D9CE9;
+	top: -1px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#closebox1 {
+	display: none;
+	height: 56px;
+	width: 25px;
+	right: 325px;
+	position: absolute;
+	background-color: #3D9CE9;
+	top: -1px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#img {
+	margin-top: 18px;
+}
+
+#warmtable th {
+	text-align: center;
+	width: 78px;
+	height: 40px;
+}
+
+#warmtable font {
+	color: white;
+	size: 2em;
+}
+
+.tbody_divC_tbody td {
+	display: block;
+	height: 20px;
+	float: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor: pointer;
+	padding: 0px !important;
+}
+
+.tbody_divC_tbody {
+	position: absolute;
+	height: 419px;
+	overflow-y: auto;
+}
+.exported {
+	cursor: pointer;
+	height: 56px;
+	width: 25px;
+	right: 299px;
+	position: absolute;
+	background-color: #3D9CE9;
+	top: 57px;
+	border-radius: 4px;
+	line-height: 29px;
+}*/
+
+
+._btngroup {
+	background-color: #C1C1C1;text-align: center;
+}
+/*
+ 查询条件
+ * */
+.ss,{
+	width: 60px;margin-top: 3px;
+}
+#filtertype_sl{width: 40px;margin-top: 3px;}
+#filtervalue{width: 40px;margin-top: 3px;}
+#livesubtype_sl{width: 90px;margin-top: 3px;}
+._time_div {
+	margin-left: 14px;margin-top: 5px;
+}
+
+._time {
+	font-size: 12px;
+}
+.chaxun,
+.daochu {
+	width: 76px;
+	background-color: #45A1EB;
+	color: white;
+}
+.startDate,
+.endDate {
+	width: 132px;
+}
+
+/**
+ * 主菜单中的表格
+ * */
+#statictable {
+	text-align: center;
+	margin-top: 13px;
+}
+
+#statictable thead {
+	position: absolute;
+	display: block;
+	width: 240px;
+	margin-left: 5px;
+	background:#45A1EB;
+	  margin-top: 0px;
+}
+#statictable thead td {
+	width: 80px;
+	height: 33px;
+    color: white;
+}
+
+#statictable tbody {
+	position: absolute;
+	overflow-y: auto;
+	font-size: 12px;
+	margin: 33px 0 0 0;
+	margin-left: 5px;
+}
+
+#statictable tbody tr {
+	display: block;
+	cursor:pointer
+}
+
+#statictable tbody td {
+	width: 80px;
+	height: 29px;
+	border: 1px solid #D4D2D2;
+}
+
+/*popup样式*/
+
+.ol-popup {
+	position: absolute;
+	background-color: white;
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 100, 0.5));
+	border: 1px solid lightblue;
+	bottom: 12px;
+	left: -50px;
+	border-radius: 10px;
+	min-width: 120px;
+	min-height: 50px;
+}
+
+.ol-popup:after,
+.ol-popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.ol-popup:after {
+	border-top-color: #dfe7f1;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.ol-popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.ol-popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.ol-popup-closer:after {
+	content: "✖";
+	color: red;
+}
+
+#popup-content {
+	color: red;
+	margin-top: 25px;
+	margin-left: 5px;
+	margin-right: 2px;
+	height: 260px;
+	width: 600px;
+}
+.terMap,.vecMap,.imgMap,.noneMap{left: 260px;}
+/**
+ *圈选发布 
+ */
+.warning-release{
+	position: absolute;
+	bottom: 20px;
+	left: 260px;
+	width: 280px;
+}
+.modal-input-textarea{
+	display: block;
+	height: 120px;
+	width: 100%;
+}
+#releaseModule .modal-table{
+	overflow: auto;
+	max-height: 280px;
+}
+#releaseModule label{
+	color: #000000;
+}
+#releaseModule table td {
+	font-size: 10px;
+	padding: 3px!important
+}
+.blue-td {
+	color: -webkit-link;
+	//cursor: pointer;
+}
+.selection{
+    background-color:#47A2EC;
+}

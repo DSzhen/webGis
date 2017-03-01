@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		<script src="../../js/lib/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+		<title>实况监测系统</title>
+		<link rel="stylesheet" href="../../css/lib/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/lib/ol.css" />
+		
+		<link rel="stylesheet" type="text/css" href="../../css/lib/ssd.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/lib/bootstrap-treeview.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/lib/jquery.datetimepicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/lib/defaultTheme.css" />
+		<link rel="stylesheet" href="../../css/common/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/viewmodel/live.css" />
+	</head>
+
+	<body onload="init()">
+		<div id="map"></div>
+			<!--
+	        	作者：546989691@qq.com
+	        	时间：2016-11-08
+	        	描述：左侧菜单栏
+	        -->
+	    <div id="mainMenu_div" class="mainMenu_div" >
+			<div id="monitoring_div">
+				<span>站类型</span>
+				<div class="split_line"> </div>
+				<div class="rightMenu_first">
+						<label class="cbAuto_label"><input id='cbAuto' type="checkbox" checked="checked" onclick="OnStationTypeChanged(this)"/>国家站 </label>
+						<label class="cbReg_label"><input id="cbReg" type="checkbox" onclick="OnStationTypeChanged(this)"/>区域站</label><br />
+						<label class="cbstationnum_label"><input id="cbstationnum" type="checkbox" onclick="OnStationShowChanged(this) "/>站编号 </label>
+						<label class="cbstationname_label"><input id="cbstationname" type="checkbox" onclick="OnStationShowChanged(this)"/>站名称 </label>
+				</div>	
+				<span>要素</span>
+				<div class="split_line"> </div>
+				<div id="YaoSu_02" class="YaoSu">
+					<label class="temp_label"><input class="close1" type="radio" name="r" checked="checked" onclick="OnLiveTypeChanged('temp')"/>温度(℃)</label>
+					<label class="rain_label"><input id="JYL" type="radio" value="../../jsL" name="r"  onclick="OnLiveTypeChanged('rianamount')"/>雨量(mm)</label>
+					<label class="press_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('press')"  />气压(hpa)</label>
+					<label class="relhum_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('relhum')"  />湿度(%)</label>
+					<label class="windv_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('windv')"   />风力(m/s)</label>
+					<label class="visib_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('visib')"   />能见度(m)</label><br />
+					<span>降雨累计(mm)</span>
+					<div class="split_line"> </div>
+					<label class="rain_03"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('03')"/>逐3</label>
+					<label class="rain_06"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('06')"/>逐6</label>
+					<label class="rain_09"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('09')"/>逐9</label><br />
+					<label class="rain_12"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('12')"/>逐12</label>
+					<label class="rain_24"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('24')"/>逐24</label>
+					<label class="rain_48"><input  class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('48')"/>逐48</label><br />
+					<label class="hour08_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('0808')"   />08~08时</label>
+					<label class="hour20_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('2020')"   />20~20时</label>
+					<label class="hour0820_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('0820')"   />08~20时</label>
+					<label class="hour2008_label"><input class="close1" type="radio" name="r" onclick="OnLiveTypeChanged('2008')"   />20~08时</label><br />
+					<div class="split_line"> </div>
+					<div class="station-button text-center">
+						<input type="button" id="forward" class="forward" value="上一时次" onclick="forwardHour()"/>
+						<input type="button" class="current" value="当前时次" onclick="currentHour()"/>
+						<input type="button" id="after" class="after" value="下一时次" onclick="afterHour()"/>
+						<input type="button" class="dengxian" value="等值线" onclick="createContourLine()" />
+						<input type="button" class="dengmian" value="等值面" onclick="createContourPoly()"/>
+						<a class="btn" download="map.png" target="_new" onclick="exportMap(this)">
+							下载
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="split_line mar_line"> </div>
+			<div id="sum_div">
+				<div class="_btn _btngroup">
+					<select class="ss" onchange="livetypeSelChanged()" id='livetype_sl'>
+						<option value="气温">气温</option>
+						<option value="雨量">雨量</option>
+						<option value="风速">风速</option>
+						<option value="气压">气压</option>
+						<option value="湿度">湿度</option>
+					</select>
+					<select class="select" title="" id='livesubtype_sl'>
+						<option value='min'>最低气温</option>
+						<option value='max'>最高气温</option>
+						<option value='prev'>平均气温</option>
+					</select>
+					<select title="选择符号" id='filtertype_sl'>
+						<option value="0">></option>
+						<option value="1">
+							<</option>
+								<option value="2">>=</option>
+								<option value="3">
+									<=</option>
+										<option value="4">=</option>
+										<option value="5">≠</option>
+					</select>
+					<label><input  type="text" id="filtervalue"></label>
+				</div>			
+				<div class="_time">
+					<div class="_next"></div>
+					<div class="_time_div">
+					从&nbsp; <input type="text" class="startDate" name="startDate" />&nbsp;<input class="chaxun" type="button" value="查询" />
+					<br />
+					<div class="space_div"></div>到&nbsp; <input type="text" class="endDate" name="endDate" />&nbsp;<input class="daochu" type="button" onclick="ExpertTable()" value="导出" />
+					</div>
+				</div>
+				<div>
+					<table id="statictable" cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<td>站号</td>
+								<td>站名</td>
+								<td>值</td>
+							</tr>
+						</thead>
+						<tbody id="tablestatics_tbody">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			  <!--圈选发布-->
+	    	<div class="btn-group warning-release">
+				<button class="btn-xs btn-primary selection" onclick="drawGraphic()">框选终端</button>
+				<button class="btn-xs btn-primary selection" onclick="resetDraw()">清除框选</button>
+				<button class="btn-xs btn-primary selection" onclick="releasedInfo()">一键发布</button>
+			</div>
+			<div class="modal fade" id="releaseModule" tabindex="-1" role="dialog" aria-labelledby="releaseModuleLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+						<h4 class="modal-title" id="releaseModuleLabel">
+							站点信息
+				</h4>
+					</div>
+					<div class="modal-body modal-table">
+					</div>
+					<div class="modal-body modal-input">
+						<label class="label">请输入要发布的信息：</label>
+						<textarea class="modal-input-textarea"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+						<button type="button" class="btn btn-primary" onclick="excuteRelease()">
+					发布
+				</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../js/lib/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/ol-debug.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/gisCommon.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/common/common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../config/config.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/ssd.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/Xdomain.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/viewmodel/live.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/echarts-all.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/ol3-legend.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/bootstrap-treeview.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/lib/jquery.fixedheadertable.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../js/viewmodel/viewmodelcommon.js" type="application/javascript"></script>
+	<script type="application/javascript">
+		var mianHeght = document.getElementById('mainMenu_div').scrollHeight;
+		var moniHeght = document.getElementById('monitoring_div').scrollHeight;
+		var sumHeght = document.getElementById('sum_div').scrollHeight;
+		var tableHeght = mianHeght-moniHeght-sumHeght-21-33+"px";
+		$('#statictable tbody').css('height',tableHeght);
+	</script>
+
+</html>

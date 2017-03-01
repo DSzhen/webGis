@@ -1,0 +1,312 @@
+/*用于系统所有页面的公共样式，包括整体布局、样式、字体等，
+ * 页面中可使用该公共样式的不可自定义样式。
+ * 页面的样式建议使用该样式文件加上相应的自定义样式文件*/
+
+html,
+body,
+#map {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	background-color: #ffffff;
+}
+
+ul li {
+	list-style: none;
+}
+a {
+	text-decoration: none
+}
+
+@charset "utf-8";
+* {
+	/*font-size: 14px;*/
+	font-family: "Microsoft YaHei";
+	color: #585858;
+	padding: 0;
+	margin: 0;
+}
+body {
+	background-clip: border-box;
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-origin: padding-box;
+	background-size: 100%;
+}
+.boxshadow {
+	-webkit-box-shadow: 1px 1px 6px 0px #5A6161;
+	/*-moz-box-shadow: 1px 1px 6px 0px #5A6161;*/
+	box-shadow: 1px 1px 6px 0px #5A6161;
+}
+.boxshadow h1,.listcona {
+	background-color: #168AE6;
+}
+/*popup样式*/
+.ol-popup {
+	position: absolute;
+	background-color: white;
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	/*padding: 15px;*/
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+	bottom: 12px;
+	left: -50px;
+	min-width: 120px;
+	min-height: 50px;
+}
+
+.ol-popup:after,
+.ol-popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.ol-popup:after {
+	border-top-color: #DFE7F1;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.ol-popup:before {
+	border-top-color: #DFE7F1;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.ol-popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.ol-popup-closer:after {
+	content: "✖";
+	color: red;
+}
+/*滚动条优化*/
+/**********页面标题*********/
+
+.gs_login {
+	position: fixed;
+	left: 0;
+	top: 1%;
+	background: url(../../img/logins.png) repeat-x;
+	padding: 5px 30px 3px 20px;
+	color: #fff;
+	border: 1px solid #01589e;
+	border-left: none;
+	border-radius: 0 33px 33px 0;
+	font-size: 30px;
+	font-family: fantasy;
+	font-weight: bold;
+	text-shadow: 0px 0px 22px #168AE6;
+}
+
+.gs_login img {
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+/*********左上角个人状态信息**********/
+
+.gs_msg {
+	position: fixed;
+	right: 0;
+	top: 1%;
+}
+
+.gs_msg>p {
+	display: inline-block;
+	padding-left: 8px;
+	color: #fff;
+	height: 31px;
+	line-height: 31px;
+	border-radius: 4px;
+	border: 1px solid #256fa9;
+	background: #399feb repeat-x;
+	padding-right: 21px
+}
+
+.gs_msg>a.gsmsg_t {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	right: 21px;
+}
+
+
+/**********地图底图切换*********/
+
+.gs_maps {
+	position: fixed;
+	left: 10px;
+	top: 10px;
+}
+
+.gs_maps a {
+	display: block;
+	background-color: #fff;
+	/*padding: 1px;*/
+	border: 1px solid #168AE6;
+	/*border-radius: 4px*/
+}
+
+.gs_maps a p {
+	text-align: center;
+	margin: 0px
+}
+
+.gs_maps a p img {
+	display: block;
+	height: 45px;
+	width: 45px;
+}
+
+.gs_maps a:hover {
+	/*border: 1px solid #000;*/
+}
+
+.gs_maps a:hover p {
+	/*color: #900*/
+}
+
+.gs_rtcona {
+	position: fixed;
+	right: 20px;
+	bottom: 1%;
+}
+
+.gs_rtcona p {
+	float: left;
+	margin-left: 10px
+}
+
+#mapsnamep {
+    position: absolute;
+    top: 29px;
+    left: 1px;
+    width: 45px;
+    color: rgb(102, 102, 102);
+    background: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 17px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/*显示经纬度插件*/
+.ol-mouse-position {
+	bottom: 8px!important;
+	top: auto!important;
+	left: 170px!important;
+	color: -webkit-link;
+}
+.menu-control{
+	height: 16%;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.ol-legend{
+	bottom: 40px!important;
+}
+#queryModule select{
+	height: 24px;
+}
+
+#queryModule .modal-dialog{
+	width: 450px!important;
+}
+.modal-header{
+	padding: 10px;
+}
+#layerName{
+	position: absolute;
+	top: 10px;
+	right: 100px;
+	
+}
+/*********折叠菜单**********/
+	
+	.subNav {
+		padding: 3px 10px;
+		cursor: pointer;
+	}
+	
+	.subNav span {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		background: url(../images/list_close.png);
+		vertical-align: middle;
+		margin-right: 5px
+	}
+	
+	.subNav:hover {
+		background-color: #7bb3e1;
+		color: #fff
+	}
+	
+	.navContent {
+		display: none;
+	}
+	
+	.navContent a {
+		display: block;
+		padding: 3px 5px 3px 30px
+	}
+	
+	.navContent a span {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		background: url(../images/list_fau.png);
+		vertical-align: middle;
+		margin-right: 5px
+	}
+	
+	.navContent a:hover,
+	.navContent a.liactive {
+		background-color: #faf6c2;
+	}
+	
+	.navContent a:hover span,
+	.navContent a.liactive span {
+		background: url(../images/list_active.png);
+	}
+	
+	.currentDd span {
+		background: url(../images/list_open.png);
+	}
+	
+
+
+/*显示经纬度插件*/
+
+.ol-mouse-position {
+	bottom: 8px!important;
+	top: auto!important;
+	left: 170px!important;
+	color: -webkit-link;
+	right: auto;
+}
+
+
+.terMap,
+.vecMap,
+.imgMap,
+.noneMap {
+	x: 0px;
+	y: 0px;
+	left: 20px;
+	top: 20px;
+}
